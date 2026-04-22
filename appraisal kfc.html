@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kayode Filani & Co. (Demilade Chambers) — Q1 Performance Appraisal 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #8B5E3C; --gold-pale: #F5EDE3; --dark: #1A0F08; --dark-mid: #2A1A10;
+    --cream: #FAF6EE; --cream-mid: #F0E9D8; --text: #1a1a1a; --muted: #6b7280; --border: #DDD3BB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+  #landing { min-height:100vh; background:var(--dark); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; position:relative; overflow:hidden; }
+  #landing::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 40% at 20% 20%,rgba(139,94,60,.13) 0%,transparent 60%), radial-gradient(ellipse 50% 50% at 80% 80%,rgba(139,94,60,.08) 0%,transparent 60%); pointer-events:none; }
+  .badge { font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(139,94,60,.4); padding:6px 18px; border-radius:100px; margin-bottom:28px; }
+  .org-logo { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,4vw,38px); font-weight:700; color:#fff; text-align:center; line-height:1.25; margin-bottom:8px; }
+  .org-logo span { color:var(--gold); }
+  .org-sub { font-size:12px; color:rgba(255,255,255,.4); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:48px; }
+  .login-card { background:rgba(255,255,255,.04); border:1px solid rgba(139,94,60,.22); border-radius:16px; padding:40px; width:100%; max-width:460px; }
+  .login-card h2 { font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; margin-bottom:6px; }
+  .login-card p { font-size:13px; color:rgba(255,255,255,.4); margin-bottom:28px; }
+  .flabel { display:block; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .login-card select { width:100%; padding:13px 16px; background:rgba(255,255,255,.06); border:1px solid rgba(139,94,60,.25); border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; margin-bottom:20px; appearance:none; cursor:pointer; }
+  .login-card select option { background:#2A1A10; color:#fff; }
+  .login-card select:focus { outline:none; border-color:var(--gold); }
+  .pin-wrap { margin-bottom:22px; }
+  .pin-wrap input { width:100%; padding:13px 16px; background:rgba(255,255,255,.06); border:1px solid rgba(139,94,60,.25); border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; font-size:18px; letter-spacing:6px; }
+  .pin-wrap input::placeholder { letter-spacing:1px; color:rgba(255,255,255,.3); font-size:14px; }
+  .pin-wrap input:focus { outline:none; border-color:var(--gold); }
+  .err { font-size:12px; color:#ff7b7b; margin-bottom:12px; display:none; padding:8px 12px; background:rgba(255,100,100,.1); border-radius:6px; }
+  .btn-go { width:100%; padding:14px; background:linear-gradient(135deg,var(--gold),#6B4428); border:none; border-radius:10px; color:#1A0F08; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; }
+  .btn-go:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(139,94,60,.35); }
+  .login-note { margin-top:16px; font-size:11px; color:rgba(255,255,255,.25); text-align:center; line-height:1.7; }
+
+  #form-page { display:none; }
+  .form-header { background:var(--dark); padding:18px 40px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(139,94,60,.2); position:sticky; top:0; z-index:100; }
+  .form-logo { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:700; color:#fff; }
+  .form-logo span { color:var(--gold); }
+  .form-tag { font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--gold); background:rgba(139,94,60,.1); padding:4px 12px; border-radius:100px; border:1px solid rgba(139,94,60,.2); margin-left:14px; }
+  .btn-exit { padding:7px 16px; background:transparent; border:1px solid rgba(255,255,255,.15); border-radius:8px; color:rgba(255,255,255,.55); font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; transition:all .2s; }
+  .btn-exit:hover { border-color:rgba(255,255,255,.4); color:#fff; }
+
+  .progress-wrap { background:var(--dark-mid); padding:0 40px; border-bottom:1px solid rgba(139,94,60,.1); }
+  .progress-steps { display:flex; max-width:860px; margin:0 auto; }
+  .pstep { flex:1; padding:13px 6px; text-align:center; font-size:10px; font-weight:500; color:rgba(255,255,255,.3); border-bottom:2px solid transparent; transition:all .3s; }
+  .pstep.active { color:var(--gold); border-bottom-color:var(--gold); }
+  .pstep.done { color:rgba(255,255,255,.45); border-bottom-color:rgba(139,94,60,.3); }
+
+  .form-body { max-width:860px; margin:0 auto; padding:48px 40px; }
+  .sec-header { margin-bottom:36px; }
+  .sec-num { font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .sec-title { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:var(--dark); line-height:1.2; margin-bottom:10px; }
+  .sec-desc { font-size:14px; color:var(--muted); line-height:1.6; max-width:580px; }
+  .divider { height:1px; background:linear-gradient(90deg,var(--gold) 0%,transparent 60%); margin-bottom:36px; opacity:.4; }
+  .field-group { margin-bottom:24px; }
+  .field-group label { display:block; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--dark); margin-bottom:8px; }
+  .req { color:var(--gold); }
+  .field-group input, .field-group textarea, .field-group select { width:100%; padding:12px 15px; border:1.5px solid var(--border); border-radius:10px; font-family:'DM Sans',sans-serif; font-size:14px; color:var(--text); background:#fff; transition:border-color .2s; }
+  .field-group input:focus, .field-group textarea:focus, .field-group select:focus { outline:none; border-color:var(--gold); }
+  .field-group textarea { resize:vertical; min-height:96px; line-height:1.6; }
+  .hint { font-size:12px; color:var(--muted); margin-top:5px; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+
+  .rating-label { font-size:13px; font-weight:500; color:var(--dark); margin-bottom:14px; line-height:1.5; }
+  .rating-label em { font-style:normal; font-size:11px; font-weight:400; color:var(--muted); display:block; margin-top:3px; }
+  .rating-legend { display:flex; gap:14px; margin-bottom:20px; flex-wrap:wrap; }
+  .rleg-item { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted); }
+  .rdot { width:8px; height:8px; border-radius:50%; }
+  .rating-scale { display:flex; gap:10px; flex-wrap:wrap; }
+  .rating-scale input[type="radio"] { display:none; }
+  .rating-scale label { width:52px; height:52px; border:1.5px solid var(--border); border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; transition:all .2s; background:#fff; }
+  .rating-scale label .rnum { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:var(--muted); line-height:1; text-transform:none; letter-spacing:0; }
+  .rating-scale label .rlbl { font-size:8px; font-weight:500; text-transform:uppercase; color:var(--muted); margin-top:2px; text-align:center; }
+  .rating-scale input[type="radio"]:checked + label { background:var(--dark); border-color:var(--dark); }
+  .rating-scale input[type="radio"]:checked + label .rnum, .rating-scale input[type="radio"]:checked + label .rlbl { color:var(--gold); }
+  .rating-scale label:hover { border-color:var(--gold); }
+  .rating-scale label:hover .rnum { color:var(--gold); }
+
+  .kpi-table { width:100%; border-collapse:collapse; margin-bottom:26px; }
+  .kpi-table th { text-align:left; font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); padding:10px 12px; border-bottom:1.5px solid var(--border); background:var(--cream-mid); }
+  .kpi-table td { padding:11px 12px; border-bottom:1px solid var(--cream-mid); vertical-align:middle; }
+  .kpi-table tr:last-child td { border-bottom:none; }
+  .kpi-table input, .kpi-table select { width:100%; padding:7px 9px; border:1.5px solid var(--border); border-radius:7px; font-family:'DM Sans',sans-serif; font-size:12px; background:#fff; }
+  .kpi-table input:focus, .kpi-table select:focus { outline:none; border-color:var(--gold); }
+
+  .comp-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:26px; }
+  .comp-card { border:1.5px solid var(--border); border-radius:13px; padding:20px; background:#fff; transition:border-color .2s; }
+  .comp-card:hover { border-color:rgba(139,94,60,.4); }
+  .comp-icon { width:34px; height:34px; background:var(--gold-pale); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:17px; margin-bottom:10px; }
+  .comp-name { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--dark); margin-bottom:3px; }
+  .comp-desc { font-size:12px; color:var(--muted); line-height:1.5; margin-bottom:12px; }
+  .comp-rating { display:flex; gap:5px; }
+  .comp-rating input[type="radio"] { display:none; }
+  .comp-rating label { width:34px; height:34px; border:1.5px solid var(--border); border-radius:7px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:700; color:var(--muted); transition:all .2s; text-transform:none; letter-spacing:0; }
+  .comp-rating input[type="radio"]:checked + label { background:var(--dark); border-color:var(--dark); color:var(--gold); }
+  .comp-rating label:hover { border-color:var(--gold); color:var(--gold); }
+
+  .mgr-box { background:var(--cream-mid); border:1.5px solid var(--border); border-radius:13px; padding:26px; margin-bottom:26px; }
+  .mgr-box-title { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:700; color:var(--dark); margin-bottom:3px; }
+  .mgr-box-sub { font-size:13px; color:var(--muted); margin-bottom:18px; }
+
+  .form-nav { display:flex; justify-content:space-between; align-items:center; padding:26px 40px; border-top:1px solid var(--border); background:#fff; position:sticky; bottom:0; }
+  .btn-back { padding:12px 26px; background:transparent; border:1.5px solid var(--border); border-radius:10px; color:var(--muted); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all .2s; }
+  .btn-back:hover { border-color:var(--dark); color:var(--dark); }
+  .btn-next { padding:12px 34px; background:linear-gradient(135deg,var(--gold),#6B4428); border:none; border-radius:10px; color:#1A0F08; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; }
+  .btn-next:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(139,94,60,.35); }
+  .step-indicator { font-size:13px; color:var(--muted); }
+  .step-indicator strong { color:var(--dark); }
+  .sec-panel { display:none; }
+  .sec-panel.active { display:block; }
+
+  #success-page { display:none; min-height:100vh; background:var(--dark); flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center; }
+  .success-icon { width:76px; height:76px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#6B4428); display:flex; align-items:center; justify-content:center; font-size:32px; margin:0 auto 26px; animation:popIn .5s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes popIn { from{transform:scale(0);opacity:0;} to{transform:scale(1);opacity:1;} }
+  .success-title { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:700; color:#fff; margin-bottom:10px; }
+  .success-name { color:var(--gold); }
+  .success-msg { font-size:14px; color:rgba(255,255,255,.45); max-width:460px; margin:0 auto 20px; line-height:1.7; }
+  .success-ref { background:rgba(139,94,60,.1); border:1px solid rgba(139,94,60,.25); border-radius:10px; padding:13px 26px; font-size:12px; color:var(--gold); letter-spacing:1px; margin-bottom:20px; display:inline-block; }
+  .excel-note { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:18px 28px; margin-bottom:28px; max-width:420px; }
+  .excel-note p { font-size:13px; color:rgba(255,255,255,.6); line-height:1.6; margin-bottom:10px; }
+  .btn-download { padding:12px 28px; background:linear-gradient(135deg,var(--gold),#6B4428); border:none; border-radius:10px; color:#1A0F08; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s; margin-bottom:10px; width:100%; }
+  .btn-download:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(139,94,60,.4); }
+  .btn-return { padding:12px 28px; background:transparent; border:1.5px solid rgba(255,255,255,.2); border-radius:10px; color:rgba(255,255,255,.65); font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer; transition:all .2s; }
+  .btn-return:hover { border-color:rgba(255,255,255,.5); color:#fff; }
+
+  .mgr-header { background:var(--dark); padding:22px 40px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(139,94,60,.2); }
+  .mgr-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; color:#fff; }
+  .mgr-title span { color:var(--gold); }
+  .mgr-body { max-width:960px; margin:0 auto; padding:36px 40px; }
+  .emp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; }
+  .emp-card { background:#fff; border:1.5px solid var(--border); border-radius:13px; padding:20px; cursor:pointer; transition:all .2s; }
+  .emp-card:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.07); }
+  .emp-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#6B4428); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:700; color:#1A0F08; margin-bottom:10px; }
+  .ename { font-weight:600; font-size:14px; color:var(--dark); margin-bottom:3px; }
+  .erole { font-size:12px; color:var(--muted); margin-bottom:10px; line-height:1.4; }
+  .emp-status { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:500; padding:4px 10px; border-radius:100px; background:#FEF3C7; color:#92400E; }
+  .emp-dot { width:6px; height:6px; border-radius:50%; background:#F59E0B; }
+
+  .fade-in { animation:fadeIn .4s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+  @media(max-width:640px) {
+    .form-body, .form-header, .form-nav { padding-left:18px; padding-right:18px; }
+    .two-col, .comp-grid { grid-template-columns:1fr; }
+    .pstep { font-size:9px; padding:10px 3px; }
+    .progress-wrap { padding:0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="landing">
+  <div class="badge">Q1 &middot; January &ndash; March 2026</div>
+  <div class="org-logo">Kayode Filani &amp; Co.<br/><span>(Demilade Chambers)</span></div>
+  <div class="org-sub">Q1 2026 Performance Appraisal Portal</div>
+  <div class="login-card">
+    <h2>Access Your Appraisal</h2>
+    <p>Select your name and enter your 4-digit PIN to begin.</p>
+    <span class="flabel">Select Your Name <span class="req">*</span></span>
+    <select id="emp-select">
+      <option value="">&#8212; Choose your name &#8212;</option>
+      <option value="manager">&#128100; Manager / Admin View</option>
+      <option value="KFC001">Faleye Oluwabamise — Head of HR/Admin</option>
+      <option value="KFC002">Filani Olawale — Associate Lawyer</option>
+      <option value="KFC003">Babalola Johnson — Senior Associate</option>
+      <option value="KFC004">Olonisakin Busayo — Associate Lawyer</option>
+      <option value="KFC005">Oseji Adeyemi — Receptionist</option>
+      <option value="KFC006">Adeyanju Samuel — Law Assistant</option>
+      <option value="KFC007">Awoete Olufunke — Account Officer</option>
+      <option value="KFC008">Bella Faith — Confidential Secretary</option>
+
+    </select>
+    <span class="flabel">4-Digit PIN <span class="req">*</span></span>
+    <div class="pin-wrap">
+      <input type="password" id="pin-input" placeholder="e.g. 1001" maxlength="4" inputmode="numeric"/>
+    </div>
+    <div class="err" id="login-error">Invalid PIN. Please check and try again.</div>
+    <button class="btn-go" onclick="handleLogin()">Access My Appraisal &rarr;</button>
+    <div class="login-note">&#128274; Responses are confidential &amp; backed up to Excel on submission.<br/>Your PIN is provided by HR.</div>
+  </div>
+</div>
+
+<div id="form-page">
+  <div class="form-header">
+    <div style="display:flex;align-items:center;">
+      <div class="form-logo">KFC <span>(Demilade Chambers)</span></div>
+      <div class="form-tag">Q1 Appraisal &middot; 2026</div>
+    </div>
+    <button class="btn-exit" onclick="exitForm()">&#x2715; Exit</button>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-steps">
+      <div class="pstep active" id="step-1">1. Info</div>
+      <div class="pstep" id="step-2">2. Self-Assessment</div>
+      <div class="pstep" id="step-3">3. KPIs</div>
+      <div class="pstep" id="step-4">4. Competencies</div>
+      <div class="pstep" id="step-5">5. Manager</div>
+      <div class="pstep" id="step-6">6. Submit</div>
+    </div>
+  </div>
+  <div class="form-body">
+
+    <div class="sec-panel active fade-in" id="panel-1">
+      <div class="sec-header"><div class="sec-num">Section 01</div><div class="sec-title">Employee Information</div><div class="sec-desc">Confirm your details below. Pre-filled fields are from our records.</div></div>
+      <div class="divider"></div>
+      <div class="two-col">
+        <div class="field-group"><label>Full Name</label><input type="text" id="emp-name" readonly style="background:#f9f6f0;"/></div>
+        <div class="field-group"><label>Staff ID</label><input type="text" id="emp-id" readonly style="background:#f9f6f0;"/></div>
+      </div>
+      <div class="two-col">
+        <div class="field-group"><label>Designation / Role</label><input type="text" id="emp-role-input" readonly style="background:#f9f6f0;"/></div>
+        <div class="field-group"><label>Organisation</label><input type="text" id="emp-org" readonly style="background:#f9f6f0;" value="Kayode Filani & Co. (Demilade Chambers)"/></div>
+      </div>
+      <div class="two-col">
+        <div class="field-group"><label>Line Manager</label><input type="text" id="emp-manager" readonly style="background:#f9f6f0;"/></div>
+        <div class="field-group"><label>Review Period</label><input type="text" value="Q1 &mdash; January to March 2026" readonly style="background:#f9f6f0;"/></div>
+      </div>
+      <div class="field-group"><label>Employment Type</label><select id="emp-type"><option>Full-Time</option><option>Contract</option><option>Part-Time</option><option>Intern / NYSC</option></select></div>
+    </div>
+
+    <div class="sec-panel fade-in" id="panel-2">
+      <div class="sec-header"><div class="sec-num">Section 02</div><div class="sec-title">Employee Self-Assessment</div><div class="sec-desc">Reflect honestly on your Q1 performance.</div></div>
+      <div class="divider"></div>
+      <div class="field-group"><label>Key Achievements This Quarter <span class="req">*</span></label><textarea id="achievements" placeholder="Describe your 2&#8211;3 most significant contributions in Q1..."></textarea><div class="hint">Focus on outcomes and impact, not just activities.</div></div>
+      <div class="field-group"><label>Challenges Encountered <span class="req">*</span></label><textarea id="challenges" placeholder="What obstacles did you face, and how did you address them?"></textarea></div>
+      <div class="field-group"><label>Areas for Improvement <span class="req">*</span></label><textarea id="improvements" placeholder="Identify 1&#8211;2 areas where you could develop or perform better next quarter..."></textarea></div>
+      <div class="field-group"><label>Support Needed from Management</label><textarea id="support" placeholder="What resources, training, or guidance would help you in Q2?"></textarea></div>
+      <div style="margin-bottom:12px;">
+        <div class="rating-label">Overall Self-Rating for Q1 <span class="req">*</span><em>Rate your overall personal performance this quarter</em></div>
+        <div class="rating-legend">
+          <div class="rleg-item"><div class="rdot" style="background:#C0392B;"></div>1=Far Below</div>
+          <div class="rleg-item"><div class="rdot" style="background:#E67E22;"></div>2=Below</div>
+          <div class="rleg-item"><div class="rdot" style="background:#F1C40F;"></div>3=Meets</div>
+          <div class="rleg-item"><div class="rdot" style="background:#27AE60;"></div>4=Exceeds</div>
+          <div class="rleg-item"><div class="rdot" style="background:#1A5276;"></div>5=Outstanding</div>
+        </div>
+        <div class="rating-scale">
+          <input type="radio" name="self-overall" id="so1" value="1"/><label for="so1"><span class="rnum">1</span><span class="rlbl">Far Below</span></label>
+          <input type="radio" name="self-overall" id="so2" value="2"/><label for="so2"><span class="rnum">2</span><span class="rlbl">Below</span></label>
+          <input type="radio" name="self-overall" id="so3" value="3"/><label for="so3"><span class="rnum">3</span><span class="rlbl">Meets</span></label>
+          <input type="radio" name="self-overall" id="so4" value="4"/><label for="so4"><span class="rnum">4</span><span class="rlbl">Exceeds</span></label>
+          <input type="radio" name="self-overall" id="so5" value="5"/><label for="so5"><span class="rnum">5</span><span class="rlbl">Outstanding</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-panel fade-in" id="panel-3">
+      <div class="sec-header"><div class="sec-num">Section 03</div><div class="sec-title">KPIs &amp; Goal Achievement</div><div class="sec-desc">These KPIs are specific to your role. Enter your target, actual achievement, and status for each.</div></div>
+      <div class="divider"></div>
+      <table class="kpi-table">
+        <thead><tr><th style="width:30%">KPI</th><th style="width:18%">Target</th><th style="width:20%">Actual</th><th style="width:14%">% Achieved</th><th style="width:18%">Status</th></tr></thead>
+        <tbody id="kpi-body"></tbody>
+      </table>
+      <div class="field-group"><label>Comments on KPI Performance</label><textarea id="kpi-comments" placeholder="Explain any gaps or context around your KPI performance..."></textarea></div>
+    </div>
+
+    <div class="sec-panel fade-in" id="panel-4">
+      <div class="sec-header"><div class="sec-num">Section 04</div><div class="sec-title">Competencies &amp; Behaviours</div><div class="sec-desc">Rate yourself on each core competency based on consistent behaviour across the quarter.</div></div>
+      <div class="divider"></div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:18px;">1=Far Below &nbsp;&middot;&nbsp; 2=Below &nbsp;&middot;&nbsp; 3=Meets &nbsp;&middot;&nbsp; 4=Exceeds &nbsp;&middot;&nbsp; 5=Outstanding</div>
+      <div class="comp-grid">
+        <div class="comp-card"><div class="comp-icon">&#127919;</div><div class="comp-name">Results Orientation</div><div class="comp-desc">Delivers work on time and to the required standard.</div><div class="comp-rating"><input type="radio" name="c1" id="c1-1" value="1"/><label for="c1-1">1</label><input type="radio" name="c1" id="c1-2" value="2"/><label for="c1-2">2</label><input type="radio" name="c1" id="c1-3" value="3"/><label for="c1-3">3</label><input type="radio" name="c1" id="c1-4" value="4"/><label for="c1-4">4</label><input type="radio" name="c1" id="c1-5" value="5"/><label for="c1-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#129309;</div><div class="comp-name">Teamwork &amp; Collaboration</div><div class="comp-desc">Works effectively with colleagues and supports team goals.</div><div class="comp-rating"><input type="radio" name="c2" id="c2-1" value="1"/><label for="c2-1">1</label><input type="radio" name="c2" id="c2-2" value="2"/><label for="c2-2">2</label><input type="radio" name="c2" id="c2-3" value="3"/><label for="c2-3">3</label><input type="radio" name="c2" id="c2-4" value="4"/><label for="c2-4">4</label><input type="radio" name="c2" id="c2-5" value="5"/><label for="c2-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#128161;</div><div class="comp-name">Initiative &amp; Problem Solving</div><div class="comp-desc">Proactively identifies issues and suggests practical solutions.</div><div class="comp-rating"><input type="radio" name="c3" id="c3-1" value="1"/><label for="c3-1">1</label><input type="radio" name="c3" id="c3-2" value="2"/><label for="c3-2">2</label><input type="radio" name="c3" id="c3-3" value="3"/><label for="c3-3">3</label><input type="radio" name="c3" id="c3-4" value="4"/><label for="c3-4">4</label><input type="radio" name="c3" id="c3-5" value="5"/><label for="c3-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#128226;</div><div class="comp-name">Communication</div><div class="comp-desc">Communicates clearly and shares information promptly.</div><div class="comp-rating"><input type="radio" name="c4" id="c4-1" value="1"/><label for="c4-1">1</label><input type="radio" name="c4" id="c4-2" value="2"/><label for="c4-2">2</label><input type="radio" name="c4" id="c4-3" value="3"/><label for="c4-3">3</label><input type="radio" name="c4" id="c4-4" value="4"/><label for="c4-4">4</label><input type="radio" name="c4" id="c4-5" value="5"/><label for="c4-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#9200;</div><div class="comp-name">Punctuality &amp; Attendance</div><div class="comp-desc">Reports to work on time and maintains high attendance.</div><div class="comp-rating"><input type="radio" name="c5" id="c5-1" value="1"/><label for="c5-1">1</label><input type="radio" name="c5" id="c5-2" value="2"/><label for="c5-2">2</label><input type="radio" name="c5" id="c5-3" value="3"/><label for="c5-3">3</label><input type="radio" name="c5" id="c5-4" value="4"/><label for="c5-4">4</label><input type="radio" name="c5" id="c5-5" value="5"/><label for="c5-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#127963;</div><div class="comp-name">Integrity &amp; Ethics</div><div class="comp-desc">Demonstrates honesty, accountability, and adherence to values.</div><div class="comp-rating"><input type="radio" name="c6" id="c6-1" value="1"/><label for="c6-1">1</label><input type="radio" name="c6" id="c6-2" value="2"/><label for="c6-2">2</label><input type="radio" name="c6" id="c6-3" value="3"/><label for="c6-3">3</label><input type="radio" name="c6" id="c6-4" value="4"/><label for="c6-4">4</label><input type="radio" name="c6" id="c6-5" value="5"/><label for="c6-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#128200;</div><div class="comp-name">Learning &amp; Development</div><div class="comp-desc">Actively improves knowledge and skills relevant to their role.</div><div class="comp-rating"><input type="radio" name="c7" id="c7-1" value="1"/><label for="c7-1">1</label><input type="radio" name="c7" id="c7-2" value="2"/><label for="c7-2">2</label><input type="radio" name="c7" id="c7-3" value="3"/><label for="c7-3">3</label><input type="radio" name="c7" id="c7-4" value="4"/><label for="c7-4">4</label><input type="radio" name="c7" id="c7-5" value="5"/><label for="c7-5">5</label></div></div>
+        <div class="comp-card"><div class="comp-icon">&#129517;</div><div class="comp-name">Stakeholder / Client Focus</div><div class="comp-desc">Prioritises satisfaction of clients, residents, or colleagues.</div><div class="comp-rating"><input type="radio" name="c8" id="c8-1" value="1"/><label for="c8-1">1</label><input type="radio" name="c8" id="c8-2" value="2"/><label for="c8-2">2</label><input type="radio" name="c8" id="c8-3" value="3"/><label for="c8-3">3</label><input type="radio" name="c8" id="c8-5" value="5"/><label for="c8-5">5</label></div></div>
+      </div>
+    </div>
+
+    <div class="sec-panel fade-in" id="panel-5">
+      <div class="sec-header"><div class="sec-num">Section 05</div><div class="sec-title">Manager's Rating</div><div class="sec-desc">This section is completed by your line manager after submission. Fields are read-only for employees.</div></div>
+      <div class="divider"></div>
+      <div class="mgr-box">
+        <div class="mgr-box-title">Awaiting Manager Review</div>
+        <div class="mgr-box-sub">Your manager will complete ratings and comments after reviewing your submission.</div>
+        <div class="two-col">
+          <div class="field-group"><label>Manager's Overall Rating</label><input type="text" value="&#8212; Pending &#8212;" readonly style="background:#f9f6f0;color:var(--muted);"/></div>
+          <div class="field-group"><label>Performance Band</label><input type="text" value="&#8212; Pending &#8212;" readonly style="background:#f9f6f0;color:var(--muted);"/></div>
+        </div>
+        <div class="field-group"><label>Manager's Comments</label><textarea readonly placeholder="Manager's feedback will appear here after review..." style="background:#f9f6f0;color:var(--muted);"></textarea></div>
+        <div class="field-group"><label>Q2 Goals &amp; Development Plan</label><textarea readonly placeholder="Manager will set Q2 targets here..." style="background:#f9f6f0;color:var(--muted);"></textarea></div>
+      </div>
+      <div class="field-group"><label>Your Personal Q2 Goal (Optional)</label><textarea id="q2-goal" placeholder="Is there a specific goal or skill you'd like to focus on in Q2?"></textarea><div class="hint">Visible to your manager when they review your form.</div></div>
+    </div>
+
+    <div class="sec-panel fade-in" id="panel-6">
+      <div class="sec-header"><div class="sec-num">Section 06</div><div class="sec-title">Review &amp; Submit</div><div class="sec-desc">Review your summary before final submission. Your responses will be saved as an Excel file automatically.</div></div>
+      <div class="divider"></div>
+      <div id="review-summary" style="margin-bottom:26px;"></div>
+      <div class="field-group"><label>Any Final Comments</label><textarea id="final-comments" placeholder="Anything else you'd like to add before submitting?"></textarea></div>
+      <div style="background:var(--gold-pale);border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:18px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <input type="checkbox" id="declaration" style="margin-top:3px;accent-color:var(--gold);width:16px;height:16px;flex-shrink:0;"/>
+          <label for="declaration" style="font-size:13px;color:var(--dark);line-height:1.6;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:400;">
+            I, <strong id="declare-name">&#8212;</strong>, confirm that the information in this Q1 2026 Performance Appraisal accurately reflects my work during January &#8211; March 2026.
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-nav">
+    <button class="btn-back" id="btn-back" onclick="prevSection()" style="visibility:hidden;">&#8592; Back</button>
+    <div class="step-indicator">Step <strong id="current-step-num">1</strong> of <strong>6</strong></div>
+    <button class="btn-next" id="btn-next" onclick="nextSection()">Continue &#8594;</button>
+  </div>
+</div>
+
+<div id="success-page">
+  <div class="success-icon">&#10003;</div>
+  <div class="success-title">Submitted, <span class="success-name" id="success-name">&#8212;</span>!</div>
+  <div class="success-msg">Your Q1 2026 Performance Appraisal has been submitted successfully.</div>
+  <div class="success-ref" id="success-ref">&#8212;</div>
+  <div class="excel-note"><p>Your responses have been sent to HR successfully.</p></div>
+  <button class="btn-return" onclick="window.location.reload()">&#8592; Return to Portal</button>
+</div>
+
+<script>
+const ORG_NAME = "Kayode Filani & Co. (Demilade Chambers)";
+const ORG_CODE = "KFC";
+const employees = {
+  "KFC001": {
+    "name": "Faleye Oluwabamise",
+    "role": "Head of HR/Admin",
+    "manager": "CEO",
+    "staffId": "KFC001",
+    "pin": "1001",
+    "kpis": [
+      "Staff retention rate",
+      "Timeliness of HR processes",
+      "Employee satisfaction feedback",
+      "Office operational efficiency",
+      "Compliance with HR policies"
+    ]
+  },
+  "KFC002": {
+    "name": "Filani Olawale",
+    "role": "Associate Lawyer",
+    "manager": "CEO",
+    "staffId": "KFC002",
+    "pin": "1002",
+    "kpis": [
+      "Case resolution and success rate",
+      "Timeliness of filings and legal deliverables",
+      "Quality of legal documentation",
+      "Client satisfaction",
+      "Compliance with professional and ethical standards"
+    ]
+  },
+  "KFC003": {
+    "name": "Babalola Johnson",
+    "role": "Senior Associate",
+    "manager": "CEO",
+    "staffId": "KFC003",
+    "pin": "1003",
+    "kpis": [
+      "Case resolution and success rate",
+      "Timeliness of filings and legal deliverables",
+      "Quality of legal documentation",
+      "Client satisfaction",
+      "Compliance with professional and ethical standards"
+    ]
+  },
+  "KFC004": {
+    "name": "Olonisakin Busayo",
+    "role": "Associate Lawyer",
+    "manager": "CEO",
+    "staffId": "KFC004",
+    "pin": "1004",
+    "kpis": [
+      "Case resolution and success rate",
+      "Timeliness of filings and legal deliverables",
+      "Quality of legal documentation",
+      "Client satisfaction",
+      "Compliance with professional and ethical standards"
+    ]
+  },
+  "KFC005": {
+    "name": "Oseji Adeyemi",
+    "role": "Receptionist",
+    "manager": "Faleye Oluwabamise",
+    "staffId": "KFC005",
+    "pin": "1005",
+    "kpis": [
+      "Visitor satisfaction feedback",
+      "Call handling efficiency",
+      "Accuracy of appointment scheduling",
+      "Professional conduct ratings",
+      "Front desk organisation"
+    ]
+  },
+  "KFC006": {
+    "name": "Adeyanju Samuel",
+    "role": "Law Assistant",
+    "manager": "Johnson Babalola",
+    "staffId": "KFC006",
+    "pin": "1006",
+    "kpis": [
+      "Accuracy of court filings",
+      "Timeliness of legal processes",
+      "Case file completeness",
+      "Error and rejection rates",
+      "Efficiency of document retrieval"
+    ]
+  },
+  "KFC007": {
+    "name": "Awoete Olufunke",
+    "role": "Account Officer",
+    "manager": "CEO",
+    "staffId": "KFC007",
+    "pin": "1007",
+    "kpis": [
+      "Accuracy of financial reports",
+      "Timeliness of monthly/annual reports",
+      "Budget variance levels",
+      "Audit findings (target: zero major issues)",
+      "Cash flow management efficiency"
+    ]
+  },
+  "KFC008": {
+    "name": "Bella Faith",
+    "role": "Confidential Secretary",
+    "manager": "CEO",
+    "staffId": "KFC008",
+    "pin": "1008",
+    "kpis": [
+      "Accuracy and timeliness of calendar management",
+      "Tasks executed without errors or delays",
+      "Quality of reports and presentations prepared",
+      "Confidentiality and discretion standards",
+      "Stakeholder liaison effectiveness"
+    ]
+  },
+  "manager": {
+    "name": "Admin Manager",
+    "role": "HR/Admin",
+    "manager": "",
+    "staffId": "ADMIN",
+    "pin": "0000",
+    "kpis": []
+  }
+};
+
+let currentSection = 1;
+let currentEmpId = null;
+let currentRef = '';
+
+function buildKpiTable(kpis) {
+  var tbody = document.getElementById('kpi-body');
+  tbody.innerHTML = '';
+  for (var i = 0; i < kpis.length; i++) {
+    var row = document.createElement('tr');
+    row.innerHTML =
+      '<td><input type="text" value="' + kpis[i] + '" id="kpi-name-' + i + '"/></td>' +
+      '<td><input type="text" placeholder="e.g. 100%" id="kpi-target-' + i + '"/></td>' +
+      '<td><input type="text" placeholder="e.g. 85%" id="kpi-actual-' + i + '"/></td>' +
+      '<td><input type="number" min="0" max="200" placeholder="%" id="kpi-pct-' + i + '"/></td>' +
+      '<td><select id="kpi-status-' + i + '">' +
+        '<option value="">&#8212;</option>' +
+        '<option>Achieved</option>' +
+        '<option>Partial</option>' +
+        '<option>Missed</option>' +
+      '</select></td>';
+    tbody.appendChild(row);
+  }
+}
+
+function handleLogin() {
+  var sel = document.getElementById('emp-select').value;
+  var pin = document.getElementById('pin-input').value.trim();
+  var errEl = document.getElementById('login-error');
+  if (!sel || pin === "") {
+    errEl.textContent = 'Please select your name and enter your PIN.';
+    errEl.style.display = 'block';
+    return;
+  }
+  var emp = employees[sel];
+  if (!emp || emp.pin !== pin) {
+    errEl.textContent = 'Invalid PIN. Please check and try again.';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  currentEmpId = sel;
+  if (sel === 'manager') {
+    document.getElementById('landing').style.display = 'none';
+    showManagerPage();
+    return;
+  }
+  document.getElementById('emp-name').value = emp.name;
+  document.getElementById('emp-id').value = emp.staffId;
+  document.getElementById('emp-role-input').value = emp.role;
+  document.getElementById('emp-manager').value = emp.manager;
+  document.getElementById('declare-name').textContent = emp.name;
+  buildKpiTable(emp.kpis);
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('form-page').style.display = 'block';
+}
+
+function nextSection() {
+  if (currentSection === 6) { submitForm(); return; }
+  if (!validateSection(currentSection)) return;
+  goToSection(currentSection + 1);
+}
+
+function prevSection() {
+  if (currentSection > 1) goToSection(currentSection - 1);
+}
+
+function goToSection(n) {
+  document.getElementById('panel-' + currentSection).classList.remove('active');
+  document.getElementById('step-' + currentSection).classList.remove('active');
+  document.getElementById('step-' + currentSection).classList.add('done');
+  currentSection = n;
+  document.getElementById('panel-' + n).classList.add('active', 'fade-in');
+  document.getElementById('step-' + n).classList.add('active');
+  document.getElementById('step-' + n).classList.remove('done');
+  document.getElementById('current-step-num').textContent = n;
+  document.getElementById('btn-back').style.visibility = n > 1 ? 'visible' : 'hidden';
+  document.getElementById('btn-next').textContent = n === 6 ? 'Submit Appraisal' : 'Continue →';
+  if (n === 6) buildReview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function validateSection(n) {
+  if (n === 2) {
+    if (!document.getElementById('achievements').value.trim() ||
+        !document.getElementById('challenges').value.trim() ||
+        !document.getElementById('improvements').value.trim() ||
+        !document.querySelector('input[name="self-overall"]:checked')) {
+      alert('Please complete all required fields and select an overall rating.');
+      return false;
+    }
+  }
+  if (n === 6 && !document.getElementById('declaration').checked) {
+    alert('Please tick the declaration checkbox to confirm.');
+    return false;
+  }
+  return true;
+}
+
+function buildReview() {
+  var emp = employees[currentEmpId];
+  var sr = document.querySelector('input[name="self-overall"]:checked');
+  var rl = ['','Far Below Expectations','Below Expectations','Meets Expectations','Exceeds Expectations','Outstanding'];
+  document.getElementById('review-summary').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">' +
+      '<div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px;">' +
+        '<div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Employee</div>' +
+        '<div style="font-family:Cormorant Garamond,serif;font-size:19px;font-weight:700;color:var(--dark);margin-bottom:3px;">' + emp.name + '</div>' +
+        '<div style="font-size:12px;color:var(--muted);">' + emp.role + ' &middot; ' + emp.staffId + '</div>' +
+      '</div>' +
+      '<div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px;">' +
+        '<div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Self Rating</div>' +
+        '<div style="font-family:Cormorant Garamond,serif;font-size:34px;font-weight:700;color:var(--dark);line-height:1;">' + (sr ? sr.value : '&mdash;') +
+          '<span style="font-size:15px;color:var(--muted);"> / 5</span></div>' +
+        '<div style="font-size:12px;color:var(--muted);margin-top:3px;">' + (sr ? rl[parseInt(sr.value)] : '&mdash;') + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px;">' +
+      '<div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Key Achievement Highlighted</div>' +
+      '<div style="font-size:14px;color:var(--dark);line-height:1.6;">' +
+        (document.getElementById('achievements').value || '&mdash;').substring(0, 200) +
+        (document.getElementById('achievements').value.length > 200 ? '...' : '') +
+      '</div>' +
+    '</div>';
+}
+
+function submitForm() {
+  if (!validateSection(6)) return;
+  var emp = employees[currentEmpId];
+  currentRef = ORG_CODE + '-Q1-2026-' + currentEmpId + '-' + Date.now().toString().slice(-6);
+  document.getElementById('success-name').textContent = emp.name.split(' ')[0];
+  document.getElementById('success-ref').textContent = 'Reference: ' + currentRef;
+  document.getElementById('form-page').style.display = 'none';
+  var sp = document.getElementById('success-page');
+  sp.style.display = 'flex';
+  setTimeout(function() { sendToGoogleSheets(); }, 800);
+}
+
+
+/* ── GOOGLE SHEETS + MANAGER RATING ── */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbyvoCK9b4jPHTnVNUHJwD8LF5RreWbcVzhWlmRx8bPlOxYgu1fMguJFY10Py4pswXrz9w/exec";
+const ORG_SHEET = "Kayode Filani";
+
+function closeManagerPanel() {
+  var p = document.getElementById("mgr-rating-panel");
+  if (p) p.remove();
+}
+
+function showManagerPage() {
+  document.getElementById("landing").style.display = "none";
+  var dash = document.createElement("div");
+  dash.id = "manager-dashboard";
+  dash.style.minHeight = "100vh";
+  dash.style.background = "var(--cream)";
+  document.body.appendChild(dash);
+
+  var header = document.createElement("div");
+  header.className = "mgr-header";
+  header.innerHTML = "<div><div class=\"mgr-title\">" + ORG_NAME + " &mdash; <span>Manager Dashboard</span></div>"
+    + "<div style=\"font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px;\">Q1 2026 Performance Appraisals</div></div>"
+    + "<button class=\"btn-exit\" onclick=\"window.location.reload()\">&#x2715; Exit</button>";
+  dash.appendChild(header);
+
+  var body = document.createElement("div");
+  body.className = "mgr-body";
+  dash.appendChild(body);
+
+  var intro = document.createElement("div");
+  intro.style.marginBottom = "24px";
+  intro.innerHTML = "<div style=\"font-family:Cormorant Garamond,serif;font-size:26px;font-weight:700;color:var(--dark);margin-bottom:5px;\">Employee Appraisals</div>"
+    + "<div style=\"font-size:14px;color:var(--muted);\">Click an employee card to fill in their Manager Rating.</div>";
+  body.appendChild(intro);
+
+  var grid = document.createElement("div");
+  grid.className = "emp-grid";
+  body.appendChild(grid);
+
+  Object.entries(employees).forEach(function(entry) {
+    var id = entry[0];
+    var emp = entry[1];
+    if (id === "manager") return;
+    var initials = emp.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2);
+    var card = document.createElement("div");
+    card.className = "emp-card";
+    card.innerHTML = "<div class=\"emp-avatar\">" + initials + "</div>"
+      + "<div class=\"ename\">" + emp.name + "</div>"
+      + "<div class=\"erole\">" + emp.role + "</div>"
+      + "<div class=\"emp-status\"><div class=\"emp-dot\"></div>Pending Review</div>";
+    card.addEventListener("click", function() { openManagerRating(id); });
+    grid.appendChild(card);
+  });
+}
+
+function openManagerRating(empId) {
+  var existing = document.getElementById("mgr-rating-panel");
+  if (existing) existing.remove();
+  var emp = employees[empId];
+
+  var overlay = document.createElement("div");
+  overlay.id = "mgr-rating-panel";
+  overlay.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;";
+  document.body.appendChild(overlay);
+
+  var box = document.createElement("div");
+  box.style.cssText = "background:var(--cream);border-radius:18px;width:100%;max-width:620px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.3);";
+  overlay.appendChild(box);
+
+  var head = document.createElement("div");
+  head.style.cssText = "background:var(--dark);padding:22px 28px;border-radius:18px 18px 0 0;display:flex;justify-content:space-between;align-items:center;";
+  head.innerHTML = "<div><div style=\"font-family:Cormorant Garamond,serif;font-size:20px;font-weight:700;color:#fff;\">Manager Rating</div>"
+    + "<div style=\"font-size:12px;color:rgba(255,255,255,0.45);margin-top:3px;\">" + emp.name + " &mdash; " + emp.role + "</div></div>"
+    + "<button onclick=\"closeManagerPanel()\" style=\"background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:rgba(255,255,255,0.6);padding:6px 14px;cursor:pointer;font-family:DM Sans,sans-serif;font-size:13px;\">&#x2715; Close</button>";
+  box.appendChild(head);
+
+  var form = document.createElement("div");
+  form.style.padding = "28px";
+  box.appendChild(form);
+
+  form.innerHTML = "<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;\">"
+    + "<div class=\"field-group\"><label>Overall Rating <span class=\"req\">*</span></label>"
+    + "<select id=\"mgr-overall-rating\"><option value=\"\">-- Select --</option>"
+    + "<option value=\"1\">1 - Far Below Expectations</option>"
+    + "<option value=\"2\">2 - Below Expectations</option>"
+    + "<option value=\"3\">3 - Meets Expectations</option>"
+    + "<option value=\"4\">4 - Exceeds Expectations</option>"
+    + "<option value=\"5\">5 - Outstanding</option>"
+    + "</select></div>"
+    + "<div class=\"field-group\"><label>Performance Band <span class=\"req\">*</span></label>"
+    + "<select id=\"mgr-perf-band\"><option value=\"\">-- Select --</option>"
+    + "<option>Unsatisfactory</option><option>Needs Improvement</option>"
+    + "<option>Satisfactory</option><option>Good</option><option>Excellent</option>"
+    + "</select></div></div>"
+    + "<div class=\"field-group\"><label>Manager Comments <span class=\"req\">*</span></label>"
+    + "<textarea id=\"mgr-comments\" placeholder=\"Overall feedback and observations...\" style=\"min-height:90px;\"></textarea></div>"
+    + "<div class=\"field-group\"><label>Q2 Goals and Development Plan</label>"
+    + "<textarea id=\"mgr-q2-goals\" placeholder=\"Set targets and development actions for Q2...\"></textarea></div>"
+    + "<div class=\"field-group\"><label>Training Needs</label>"
+    + "<textarea id=\"mgr-training\" placeholder=\"Any training or support recommended...\"></textarea></div>"
+    + "<div id=\"mgr-msg\" style=\"display:none;padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:14px;\"></div>"
+    + "<button onclick=\"submitManagerRating('" + empId + "')\" style=\"width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),#265C41);border:none;border-radius:10px;color:#071510;font-family:DM Sans,sans-serif;font-size:14px;font-weight:600;cursor:pointer;\">Submit Manager Rating &rarr;</button>";
+}
+
+function submitManagerRating(empId) {
+  var emp = employees[empId];
+  var rating = document.getElementById("mgr-overall-rating").value;
+  var band = document.getElementById("mgr-perf-band").value;
+  var comments = document.getElementById("mgr-comments").value.trim();
+  var msgEl = document.getElementById("mgr-msg");
+  var labels = ["","Far Below Expectations","Below Expectations","Meets Expectations","Exceeds Expectations","Outstanding"];
+
+  if (!rating || !band || !comments) {
+    msgEl.style.display = "block";
+    msgEl.style.background = "rgba(255,100,100,0.1)";
+    msgEl.style.color = "#c0392b";
+    msgEl.textContent = "Please fill in the Overall Rating, Performance Band and Comments.";
+    return;
+  }
+
+  var ref = ORG_CODE + "-MGR-Q1-2026-" + empId + "-" + Date.now().toString().slice(-6);
+  var payload = {
+    org_sheet: ORG_SHEET,
+    submission_type: "Manager Rating",
+    ref: ref,
+    org: ORG_NAME,
+    name: emp.name,
+    staffId: emp.staffId,
+    role: emp.role,
+    manager: emp.manager,
+    empType: "",
+    selfRating: "",
+    achievements: "",
+    challenges: "",
+    improvements: "",
+    support: "",
+    q2goal: "",
+    finalComments: "",
+    kpiComments: "",
+    kpis: [],
+    competencies: [],
+    mgr_overall_rating: rating,
+    mgr_rating_label: labels[parseInt(rating)] || "",
+    mgr_perf_band: band,
+    mgr_comments: comments,
+    mgr_q2_goals: document.getElementById("mgr-q2-goals").value || "",
+    mgr_training: document.getElementById("mgr-training").value || "",
+    timestamp: new Date().toISOString()
+  };
+
+  msgEl.style.display = "block";
+  msgEl.style.background = "rgba(58,125,91,0.1)";
+  msgEl.style.color = "var(--gold)";
+  msgEl.textContent = "Submitting...";
+
+  fetch(SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  }).then(function() {
+    msgEl.textContent = "Manager rating submitted for " + emp.name + "!";
+    setTimeout(function() { closeManagerPanel(); }, 2000);
+  }).catch(function(err) {
+    msgEl.style.background = "rgba(255,100,100,0.1)";
+    msgEl.style.color = "#c0392b";
+    msgEl.textContent = "Error: " + err.message;
+  });
+}
+
+function sendToGoogleSheets() {
+  var emp = employees[currentEmpId];
+  var selfRating = document.querySelector("input[name=\"self-overall\"]:checked");
+  var kpis = emp.kpis.map(function(kpi, i) {
+    return {
+      name: (document.getElementById("kpi-name-"+i)||{value:kpi}).value,
+      target: (document.getElementById("kpi-target-"+i)||{value:""}).value,
+      actual: (document.getElementById("kpi-actual-"+i)||{value:""}).value,
+      pct: (document.getElementById("kpi-pct-"+i)||{value:""}).value,
+      status: (document.getElementById("kpi-status-"+i)||{value:""}).value
+    };
+  });
+  var competencies = [1,2,3,4,5,6,7,8].map(function(n) {
+    var c = document.querySelector("input[name=\"c"+n+"\"]:checked");
+    return c ? c.value : "";
+  });
+  var payload = {
+    org_sheet: ORG_SHEET,
+    submission_type: "Employee Self-Assessment",
+    ref: currentRef,
+    org: ORG_NAME,
+    name: emp.name,
+    staffId: emp.staffId,
+    role: emp.role,
+    manager: emp.manager,
+    empType: (document.getElementById("emp-type")||{value:"Full-Time"}).value,
+    selfRating: selfRating ? selfRating.value : "",
+    achievements: document.getElementById("achievements").value,
+    challenges: document.getElementById("challenges").value,
+    improvements: document.getElementById("improvements").value,
+    support: document.getElementById("support").value,
+    q2goal: document.getElementById("q2-goal").value,
+    finalComments: document.getElementById("final-comments").value,
+    kpiComments: document.getElementById("kpi-comments").value,
+    kpis: kpis,
+    competencies: competencies,
+    timestamp: new Date().toISOString()
+  };
+  fetch(SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  }).catch(function(err) { console.error("Submission error:", err); });
+}
+
+</script>
+</body>
+</html>
